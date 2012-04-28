@@ -1,16 +1,11 @@
+# Help with setup. http://www.shawn.origaminc.com/blog/?p=357
 # This is the ignore file. Commenting out .gitignore as this will used on more than one dev box
 #.gitignore
-Assembly-CSharp-Editor-vs.csproj
-Assembly-CSharp-Editor.csproj
-Assembly-CSharp-Editor.pidb
-Assembly-CSharp-vs.csproj
-Assembly-CSharp.csproj
-Assembly-CSharp.pidb
-Assembly-UnityScript-vs.unityproj
-Assembly-UnityScript.pidb
-Assembly-UnityScript.unityproj
+*.unityproj
+*.csproj
+*.pidb
+*.sln
+*.userprefs
 Library/
 Supporting Files/
-matchGame-csharp.sln
-matchGame.sln
-matchGame.userprefs
+Temp/
