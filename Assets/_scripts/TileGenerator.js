@@ -11,6 +11,10 @@ var tName1 : Array;
 var tName2 : Array;
 var canClick = true;
 
+// OnGui setup
+var scoreInt = 0;
+var scoreTxt : String;
+
 
 var tileObjects : GameObject[];
 
@@ -65,7 +69,13 @@ function Update () {
 	}
 }
 
+function OnGui()
+{
+	// TODO: Put in draw code.
+	
 
+
+}
 
 
 function revealCardOne(){
@@ -119,10 +129,13 @@ function revealCardTwo(){
 			Destroy (matchTwo);
 			canClick = true;
 			numberOfTiles = numberOfTiles-2;
+			
 			if (numberOfTiles == 0)
 			{
 				print("End Game");
 			}
+			
+			scoreInt++;
 		}
 		else
 		{
