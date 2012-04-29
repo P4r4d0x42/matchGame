@@ -69,12 +69,10 @@ function Update () {
 	}
 }
 
-function OnGui()
+function OnGUI()
 {
-	// TODO: Put in draw code.
-	
-
-
+	scoreTxt = scoreInt.ToString();
+	GUI.Label(Rect(10,10,100,20),scoreTxt);
 }
 
 
@@ -118,7 +116,6 @@ function revealCardTwo(){
 			print(tName2[0]);
 			//matchTwo.transform.Rotate(Vector3(0,180,0));	
 			matchTwo.transform.parent.animation.Play("tileReveal");
-
 		}
 	
 		if (tName1[0] == tName2[0] )
