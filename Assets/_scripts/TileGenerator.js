@@ -15,6 +15,18 @@ var canClick = true;
 var scoreInt = 0;
 var scoreTxt : String;
 
+// Timer
+private var startTime;
+private var Seconds : int;
+private var roundedSeconds : int;
+private var txtSeconds : int;
+private var txtMinutes : int;
+var countSeconds : int;
+private var stopTimer = false;
+
+
+
+
 
 var tileObjects : GameObject[];
 
@@ -31,7 +43,10 @@ var tileLocations = new Array
 	Vector3 (3,4.5,0), Vector3 (4.5,4.5,0)
 );
 
-
+// Runs before start does or as soon as the object the script is attached to is instanciated
+function Awake (){
+	startTime = 5;
+}
 
 
 
@@ -73,6 +88,19 @@ function OnGUI()
 {
 	scoreTxt = scoreInt.ToString();
 	GUI.Label(Rect(10,10,100,20),scoreTxt);
+	// Timer code
+	if(stopTimmer == false){
+		var guiTime == Time.time - startTime;
+		Seconds = countSeconds - (guiTime);
+	
+	}
+	if (Seconds == 0){
+		print("The time is over");
+		stopTimer = True;
+		
+	}
+	
+	
 }
 
 
