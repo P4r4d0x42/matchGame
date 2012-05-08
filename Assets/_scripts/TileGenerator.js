@@ -16,7 +16,7 @@ var scoreInt = 0;
 var scoreTxt : String;
 
 // Timer
-private var startTime; // Looks like the Awake Function is not working at this time and therefore, is not initalizing this variable and causing an error further down the line 
+private var startTime = 0; // Will not work unless initilized with a var....This is not inline with what is in the book....
 private var Seconds : int;
 private var roundedSeconds : int;
 private var txtSeconds : int;
@@ -44,9 +44,8 @@ var tileLocations = new Array
 );
 
 // Runs before start does or as soon as the object the script is attached to is instanciated
-// FIXME: We are never getting here and it is causing the timer code it OnGui to fail.
 function Awake (){
-	startTime = 5;
+	startTime = 60;
 }
 
 
@@ -93,6 +92,7 @@ function OnGUI()
 	if(stopTimer == false){
 		var guiTime = Time.time - startTime;
 		Seconds = countSeconds - (guiTime);
+		print(Time.time);
 	
 	}
 	
@@ -102,6 +102,13 @@ function OnGUI()
 		
 	}
 	
+	// Display Timer
+	roundedSeconds = Mathf.CeilToInt(Seconds);
+	txtSeconds = roundedSeconds % 60;
+	txtMinutes = roundedSeconds / 60;
+	
+	var text = String.Format("{0:00}:{1:00}", txtMinutes, txtSeconds);
+	GUI.Label(Rect(10,30,100,30), text);
 	
 }
 
