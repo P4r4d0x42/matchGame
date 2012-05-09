@@ -11,9 +11,17 @@ var tName1 : Array;
 var tName2 : Array;
 var canClick = true;
 
+// Start and stop
+var finishedTexture : Texture2D;
+var timeUpTexture : Texture2D;
+var finished = false;
+var timeUp = false;
+
+
 // OnGui setup
 var scoreInt = 0;
 var scoreTxt : String;
+var egyptSkin : GUISkin;
 
 // Timer
 private var startTime = 0; // Will not work unless initilized with a var....This is not inline with what is in the book....
@@ -51,7 +59,7 @@ function Awake (){
 
 
 function Start () {
-	Camera.main.transform.position = Vector3(2.25,2.25,-8);
+	Camera.main.transform.position = Vector3(2.25,2.25,-9.5);
 	for ( var i=0; i < numberOfTiles; i++){
 	Instantiate (tileObjects[i], tileLocations[i],Quaternion.identity);
 	}
@@ -64,7 +72,6 @@ function Update () {
 	if (canClick == true){
 	
 		if (Input.GetButtonDown("Fire1")){
-			print ("Mouse clicked");
 		
 			var ray1 = Camera.main.ScreenPointToRay(Input.mousePosition);
 		
@@ -86,19 +93,20 @@ function Update () {
 
 function OnGUI()
 {
+	GUI.skin = egyptSkin;
+	// FIXME: The rect heigt seems off........Also, GUI items are not staying where they should be in full screen play mode
 	scoreTxt = scoreInt.ToString();
-	GUI.Label(Rect(10,10,100,20),scoreTxt);
+	GUI.Label(Rect(400,125,100,20),scoreTxt);
 	// Timer code
 	if(stopTimer == false){
 		var guiTime = Time.time - startTime;
 		Seconds = countSeconds - (guiTime);
-		print(Time.time);
-	
 	}
 	
 	if (Seconds == 0){
 		print("The time is over");
 		stopTimer = true;
+		timeUp = true;
 		
 	}
 	
@@ -108,7 +116,16 @@ function OnGUI()
 	txtMinutes = roundedSeconds / 60;
 	
 	var text = String.Format("{0:00}:{1:00}", txtMinutes, txtSeconds);
-	GUI.Label(Rect(10,30,100,30), text);
+	GUI.Label(Rect(575,125,100,30), text);
+	
+	// New screens
+	if (finished == true){
+		GUI.Label(Rect(270,305,512,256), finishedTexture);
+	}
+	
+	if (timeUp == true){
+		GUI.Label(Rect(270,305,512,256), timeUpTexture);
+	}
 	
 }
 
@@ -167,6 +184,9 @@ function revealCardTwo(){
 			if (numberOfTiles == 0)
 			{
 				print("End Game");
+				finished = true;
+				stopTimer = true;
+
 			}
 			
 			scoreInt++;
