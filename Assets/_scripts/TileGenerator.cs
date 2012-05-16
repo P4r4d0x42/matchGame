@@ -181,7 +181,9 @@ public class TileGenerator : MonoBehaviour
 
 	}
 
-	void revealCardTwo()
+	// TODO: Find out what IEnumerable is and why it  may be needed here.
+	//IEnumerable 
+		void revealCardTwo()
 	{
 		matchTwo = hit.transform.gameObject;
 		tileName2 = matchTwo.transform.parent.name;
@@ -198,7 +200,6 @@ public class TileGenerator : MonoBehaviour
 				tName2 = tileName2.Split("_"[0]);
 				// For debugging porpoises
 				print(tName2[0]);
-				//matchTwo.transform.Rotate(Vector3(0,180,0));	
 				matchTwo.transform.parent.animation.Play("tileReveal");
 			}
 
