@@ -100,7 +100,7 @@ public class TileGenerator : MonoBehaviour
 
 				var ray1 = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-				if (Physics.Raycast(ray1, out hit, Mathf.Infinity)) // need to ad the keyword out before hit to get this to work.....
+				if (Physics.Raycast(ray1, out hit, Mathf.Infinity)) // need to ad the keyword 'out' before hit to get this to work.....
 				{
 
 					if (!matchOne)
