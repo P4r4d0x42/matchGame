@@ -108,8 +108,8 @@ public class TileGenerator : MonoBehaviour
 						revealCardOne();
 					}
 					else
-					{
-						revealCardTwo();
+					{	
+					  StartCoroutine(revealCardTwo());
 					}
 
 				}
@@ -183,7 +183,7 @@ public class TileGenerator : MonoBehaviour
 
 	// TODO: Find out what IEnumerable is and why it  may be needed here.
 	//IEnumerable 
-		void revealCardTwo()
+		IEnumerator revealCardTwo()
 	{
 		matchTwo = hit.transform.gameObject;
 		tileName2 = matchTwo.transform.parent.name;
@@ -206,7 +206,7 @@ public class TileGenerator : MonoBehaviour
 			if (tName1[0] == tName2[0])
 			{
 				canClick = false;
-				// yield return new WaitForSeconds (2); // FIXME: These change the type of method needed. Need to find out what is needed.
+				yield return new WaitForSeconds (2); // FIXME: These change the type of method needed. Need to find out what is needed.
 				Destroy(matchOne);
 				Destroy(matchTwo);
 				canClick = true;
@@ -225,7 +225,7 @@ public class TileGenerator : MonoBehaviour
 			else
 			{
 				canClick = false;
-				// yield return new WaitForSeconds (2); // FIXME: These change the type of method needed. Need to find out what is needed.
+				yield return new WaitForSeconds (2); // FIXME: These change the type of method needed. Need to find out what is needed.
 				matchOne.transform.parent.animation.Play("tileHide");
 				matchTwo.transform.parent.animation.Play("tileHide");
 
